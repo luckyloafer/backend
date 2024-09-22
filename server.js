@@ -18,9 +18,11 @@ const io = socketIo(server, {
 });
 
 // Socket.io connection
+let onlineUsers = 0;
 io.on('connection', (socket) => {
     console.log('A user connected');
-
+    onlineUsers++;
+    io.emit('onlineUsers', onlineUsers);
     socket.on('message', (message) => {
         console.log('Message received:', message);
         io.emit('message', message); // Broadcast the message to all clients
