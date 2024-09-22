@@ -53,6 +53,19 @@ io.on("connection", (socket) => {
     console.log("Message received:", message);
      io.emit("message", message); // Broadcast the message to all clients
    });
+
+   socket.on("offer", (offer) => {
+    socket.broadcast.emit("offer", offer); // Send offer to the other user
+  });
+
+  socket.on("answer", (answer) => {
+    socket.broadcast.emit("answer", answer); // Send answer back to the offerer
+  });
+
+  socket.on("ice-candidate", (candidate) => {
+    socket.broadcast.emit("ice-candidate", candidate); // Send ICE candidates to the peer
+  });
+  
   });
 
 // Basic route for testing
