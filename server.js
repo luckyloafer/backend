@@ -43,7 +43,7 @@ io.on("connection", (socket) => {
       onlineUsers.add(socket.id); // Add socket id to track the connection
       io.emit("onlineUsers", onlineUsers.size); // Emit updated online user count
     });
-  
+
     socket.on("disconnect", () => {
       onlineUsers.delete(socket.id); // Remove user based on socket id
       io.emit("onlineUsers", onlineUsers.size); // Emit updated user count
